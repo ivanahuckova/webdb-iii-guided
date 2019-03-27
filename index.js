@@ -3,13 +3,7 @@ const express = require('express');
 const helmet = require('helmet');
 const knex = require('knex');
 
-const knexConfig = {
-  client: 'sqlite3',
-  connection: {
-    filename: './data/rolex.db3',
-  },
-  useNullAsDefault: true, // needed for sqlite
-};
+const knexConfig = require('./knexfile').development;
 const db = knex(knexConfig);
 
 const server = express();
@@ -42,7 +36,7 @@ server.get('/api/roles/:id', async (req, res) => {
 });
 
 const errors = {
-  '19': 'Another record with that value exists',
+  '19': 'Another record with that value exists'
 };
 
 // create roles
